@@ -13,6 +13,9 @@ class Cart extends Controller
 {
     public function __construct()
     {
+        $this->productModel = $this->model('Product');
+        header("access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
+        header("Content-Type: application/json; charset=UTF-8");
     }
     public function add($ai, $id)
     {
@@ -45,8 +48,22 @@ class Cart extends Controller
     {
         $items = $_SESSION['cart'];
         $cartitems = explode(",", $items);
-        $total = '';
+        $count = count($cartitems);
+        $total = 0;
         $i = 1;
+        foreach ($cartitems as $id) {
+            $datas = $this->productModel->show($id);
+            $total = $total + $datas->price;
+            $i++;
+            $result[] = $datas;
+        }
+        $data = [
+            'product' => $result,
+            'total' => $total,
+            'count' => $count
+        ];
+        print(json_encode($data));
+        die;
     }
     public function delete($id)
     {

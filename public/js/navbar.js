@@ -151,3 +151,47 @@ window.onclick = function(e) {
     }
   }
 }
+
+var settings = {
+  "async": true,
+  "crossDomain": true,
+ "url":"http://localhost/reagan/api/cart/index",
+  "method": "GET",
+  "data": {
+      // "apiKey": "51e3d490e2da412c988237f19087ad66",
+     // "newsSource": "abc-news-au"
+  }
+}
+
+$.ajax(settings).done(function (response) {
+  // alert('added to cart',id)
+  // document.getElementsByClassName('cart-total').innerHTML=response.count
+  // document.querySelectorAll('.cart-total').innerHTML=response.count
+  // alert(response.count)
+  document.getElementById('cart-count').innerHTML=response.count
+  document.getElementById('cart-total').textContent=response.count
+  document.getElementById('price-total').textContent=response.total
+  var x=response.product 
+  console.log(x)
+  let articlesresult='';
+  x.forEach((entry) => {
+      // console.log(entry)
+articlesresult +=
+  ` <div class="cart-inline-item">
+  <div class="unit unit-spacing-sm align-items-center">
+      <div class="unit-left"><a class="cart-inline-figure" href="http://localhost/reagan/pages/viewproduct/${entry.id}"><img src="http://localhost/reagan/${entry.file[0]}" alt="" width="100" height="90"></a></div>
+      <div class="unit-body">
+          <h6 class="cart-inline-name"><a href="http://localhost/reagan/pages/viewproduct/${entry.id}">${entry.name}</a></h6>
+          <div>
+              <div class="group-xs group-middle">
+                  <div class="table-cart-stepper">
+                      <div class="stepper "><input class="form-input stepper-input" type="number" data-zeros="true" value="1" min="1" max="1000"><span class="stepper-arrow up"></span><span class="stepper-arrow down"></span></div>
+                  </div>
+                  <h6 class="cart-inline-title">$${entry.price}.00</h6>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>`});
+document.getElementById('cart').innerHTML = articlesresult;
+})    

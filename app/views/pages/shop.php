@@ -20,7 +20,8 @@
                 <div class="rd-range__line" style="left: 1%; width: 24%;"></div>
               </div>
             </div>
-            <div class="group-xs group-justify">
+            <!-- <div class="group-xs group-justify"> -->
+            <form class="group-xs group-justify">
               <div>
                 <button class="button button-sm button-primary button-zakaria" type="button">Filter</button>
               </div>
@@ -36,7 +37,8 @@
                   </div>
                 </div>
               </div>
-            </div>
+            <!-- </div> -->
+</form>
           </div>
           <div class="aside-item col-sm-6 col-md-5 col-lg-12">
             <h6 class="aside-title">Categories</h6>
@@ -63,7 +65,7 @@
               </li>
             </ul>
             <!-- RD Search Form-->
-            <form class="rd-search form-search" action="https://livedemo00.template-help.com/wt_prod-21756/search-results.html" method="GET">
+            <form class="rd-search form-search" action="" method="GET">
               <div class="form-wrap">
                 <label class="form-label rd-input-label" for="search-form">Search ...</label>
                 <input class="form-input" id="search-form" type="text" name="s" autocomplete="off">

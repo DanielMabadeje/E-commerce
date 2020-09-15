@@ -12,16 +12,17 @@ class Product
     {
         $this->db = new Database;
     }
-    public function getProducts()
+    public function getProducts($offset, $no_of_records_per_page)
     {
-        $this->db->query('SELECT *
+        $this->db->query("SELECT *
                         --   product.id as productId,
                         --   category.id as categoryId
                           FROM product
                         --   INNER JOIN category
                         --   ON product.category_id = category.id
-                          ORDER BY product.timestamp DESC
-                          ');
+                          LIMIT $offset, $no_of_records_per_page
+                        --   ORDER BY product.timestamp DESC
+                          ");
         $results = $this->db->resultSet();
         // $results = $this->db->fetch();
         foreach ($results as $result) {
@@ -72,7 +73,7 @@ class Product
         }
         return $resultfile;
     }
-    public function getproductssearch(Array $category, $price )
+    public function getproductssearch(array $category, $price)
     {
         $this->db->query("SELECT *
                           FROM product      
@@ -108,5 +109,30 @@ class Product
         }
         return $resultfile;
         // return $results;
+    }
+    public function getbycategory($category)
+    {
+        $this->db->query("SELECT *
+        FROM product      
+        WHERE category_name=:val
+        ");
+        $this->db->bind(':val', $category);
+        $results = $this->db->resultSet();
+        $resultfile = [];
+        foreach ($results as $result) {
+            // var_dump($result);
+            $result->file = $this->productphoto($result->id);
+            // $result['file'] = $this->productphoto($result['id']);
+            $resules[] = $result;
+        }
+        return $resules;
+    }
+    public function count()
+    {
+        $this->db->query("SELECT COUNT(*) AS count FROM product");
+        $result = $this->db->resultSet();
+        // var_dump($result[0]->count);
+        // die;
+        return $result[0]->count;
     }
 }

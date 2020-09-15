@@ -36,3 +36,17 @@ function isLoggedIn()
         return false;
     }
 }
+
+ function isadmin()
+{
+    if (isset($_SESSION['user_id'])) {
+        if ($_SESSION['usertype']=='admin') {
+            return true;
+        }else {
+            return false;
+        }
+        
+    } else {
+        return false;
+    }
+}

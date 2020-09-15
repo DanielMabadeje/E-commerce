@@ -58,7 +58,7 @@
               <div class="heading-5 font-weight-medium text-gray-500">Total</div>
               <div class="heading-3 font-weight-normal">$<?= $data['total']; ?></div>
             </div>
-          </div><a class="button button-lg button-primary button-zakaria" href="https://livedemo00.template-help.com/wt_prod-21756/checkout.html">Proceed to checkout</a>
+          </div><a class="button button-lg button-primary button-zakaria" href="<?= URLROOT . '/pages/checkout'; ?>">Proceed to checkout</a>
         </div>
       </div>
     </div>

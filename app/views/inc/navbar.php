@@ -50,10 +50,9 @@
                                 <!-- RD Navbar Megamenu-->
                                 <ul class="rd-menu rd-navbar-megamenu rd-navbar-open-left">
                                     <li class="rd-megamenu-item flex-grow-1 flex-shrink-0">
-                                        <div class="rd-megamenu-title"><span class="rd-megamenu-icon mdi mdi-layers"></span><span class="rd-megamenu-text">Additional pages</span></div>
+                                        <div class="rd-megamenu-title"><span class="rd-megamenu-icon mdi mdi-layers"></span><span class="rd-megamenu-text">Contact</span></div>
                                         <ul class="rd-megamenu-list">
                                             <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="https://livedemo00.template-help.com/wt_prod-21756/404-page.html">404 Page</a></li>
-                                            <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="https://livedemo00.template-help.com/wt_prod-21756/coming-soon.html">Coming Soon</a></li>
                                             <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="https://livedemo00.template-help.com/wt_prod-21756/contact-us.html">Contact Us</a></li>
                                             <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="https://livedemo00.template-help.com/wt_prod-21756/privacy-policy.html">Privacy Policy</a></li>
                                         </ul>
@@ -88,29 +87,15 @@
                         <!-- RD Navbar Basket-->
                         <?php if (isset($_SESSION['user_id'])) : ?>
                             <div class="rd-navbar-basket-wrap">
-                                <button class="rd-navbar-basket fl-bigmug-line-shopping202 toggle-original" data-rd-navbar-toggle=".cart-inline"><span>2</span></button>
+                                <button class="rd-navbar-basket fl-bigmug-line-shopping202 toggle-original cart-total" data-rd-navbar-toggle=".cart-inline">
+                                    <span id="cart-total">0</span>
+                                </button>
                                 <div class="cart-inline toggle-original-elements">
                                     <div class="cart-inline-header">
-                                        <h5 class="cart-inline-title">In cart:<span> 2</span> Products</h5>
-                                        <h6 class="cart-inline-title">Total price:<span> $43</span></h6>
+                                        <h5 class="cart-inline-title">In cart:<span id="cart-count"> 0</span> Products</h5>
+                                        <h6 class="cart-inline-title">Total price: $<span id="price-total"> 0</span></h6>
                                     </div>
-                                    <div class="cart-inline-body">
-                                        <div class="cart-inline-item">
-                                            <div class="unit unit-spacing-sm align-items-center">
-                                                <div class="unit-left"><a class="cart-inline-figure" href="https://livedemo00.template-help.com/wt_prod-21756/single-product.html"><img src="<?= URLROOT ?>/product-mini-6-100x90.png" alt="" width="100" height="90"></a></div>
-                                                <div class="unit-body">
-                                                    <h6 class="cart-inline-name"><a href="https://livedemo00.template-help.com/wt_prod-21756/single-product.html">Oranges</a></h6>
-                                                    <div>
-                                                        <div class="group-xs group-middle">
-                                                            <div class="table-cart-stepper">
-                                                                <div class="stepper "><input class="form-input stepper-input" type="number" data-zeros="true" value="1" min="1" max="1000"><span class="stepper-arrow up"></span><span class="stepper-arrow down"></span></div>
-                                                            </div>
-                                                            <h6 class="cart-inline-title">$20.00</h6>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <div class="cart-inline-body" id="cart">
                                         <div class="cart-inline-item">
                                             <div class="unit unit-spacing-sm align-items-center">
                                                 <div class="unit-left"><a class="cart-inline-figure" href="https://livedemo00.template-help.com/wt_prod-21756/single-product.html"><img src="<?= URLROOT ?>/product-mini-7-100x90.png" alt="" width="100" height="90"></a></div>

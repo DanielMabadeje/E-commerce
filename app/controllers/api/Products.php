@@ -17,12 +17,24 @@ class Products extends Controller
         header("access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
         header("Content-Type: application/json; charset=UTF-8");
     }
-    public function index($limit = null)
+    public function index($api, $limit)
     {
-        $products = $this->productModel->getProducts();
-        $data = $products;
+        if (is_numeric($limit)) {
+            // echo 'j';
+            $pageno = $limit;
+        } else {
+            // echo 'uu';
+            $pageno = 1;
+        }
+        $no_of_records_per_page = 10;
+        // die($pageno - 1);
+        $offset = ($pageno - 1) * $no_of_records_per_page;
+        $total_rows = $this->productModel->count();
+        $total_pages = ceil($total_rows / $no_of_records_per_page);
+        $products = $this->productModel->getProducts($offset, $no_of_records_per_page);
+        $products['total_pages'] = $total_pages;
         // $this->view('posts/index', $data);
-        // print_r(json_encode([$data]));
+        // print_r(json_encode([$products, $total_rows]));
         // print($this->returnjson($products));
         die($this->returnjson($products));
         // 'ff';
@@ -91,10 +103,15 @@ class Products extends Controller
     }
     public function search()
     {
-        if ($_SERVER['REQUEST_METHOD']=='POST') {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-            $result=$this->productModel->search($_POST['value']);
+            $result = $this->productModel->search($_POST['value']);
             die($this->returnjson($result));
         }
+    }
+    public function category($api, $category)
+    {
+        $products = $this->productModel->getbycategory($category);
+        die($this->returnjson($products));
     }
 }

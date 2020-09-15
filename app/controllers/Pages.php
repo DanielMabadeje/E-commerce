@@ -28,11 +28,12 @@ class Pages extends Controller
         ];
         $this->view('pages/index', $data);
     }
-    public function shop()
+    public function shop($no = null)
     {
 
         $data = [
             'title' => "Reagan Mart",
+            'page_no' => $no,
         ];
         $this->view('pages/shop', $data);
     }
